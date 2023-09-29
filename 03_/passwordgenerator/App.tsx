@@ -1,8 +1,9 @@
-import { Text, StyleSheet, View } from 'react-native'
+import { Text, StyleSheet, View, ScrollView, SafeAreaView, TouchableOpacity, TextInput } from 'react-native'
 import React, { Component, useState } from 'react'
-
+import BouncyCheckbox from 'react-native-bouncy-checkbox'
 //form validation
 import * as Yup from 'yup'
+import {Formik} from 'formik'
 const passwordSchema=Yup.object().shape({
   passwordLength: Yup.number()
   .min(4,"Should be min of 4 Characters")
@@ -73,9 +74,67 @@ export default  function App() {
 
 
     return (
-      <View>
-        <Text>App</Text>
-      </View>
+    <ScrollView keyboardShouldPersistTaps="handled">
+      <SafeAreaView style={styles.appContainer}>
+
+        <View style={styles.formContainer}>
+
+        <Text style={styles.title}>Password Generator</Text>
+
+        <Formik
+        initialValues={{ passwordLength: '' }}
+        validationSchema={passwordSchema}
+        onSubmit={ values => {
+         console.log(values);
+         generatePasswordString(+values.passwordLength) 
+        }}
+       
+     >
+       {({
+         values,
+         errors,
+         touched,
+         isValid,
+         handleChange,
+         handleSubmit,
+         handleReset,
+         isSubmitting,
+         /* and other goodies */
+       }) => (
+         <>
+         <View style={styles.inputWrapper}>
+          <View style={styles.inputColumn}>
+            <Text style={styles.heading}>Password Length</Text>
+            {touched.passwordLength && errors}
+            <TextInput style={styles.inputStyle}
+              value={values.passwordLength}
+              onChangeText={handleChange('passwordLength')}
+              placeholder='Ex. 8'
+              keyboardType='numeric'
+            />
+
+           
+
+          </View>
+         </View>
+         <View style={styles.inputWrapper}></View>
+         <View style={styles.inputWrapper}></View>
+         <View style={styles.inputWrapper}></View>
+         <View style={styles.inputWrapper}></View>
+
+         <View style={styles.formActions}>
+          <TouchableOpacity><Text>Generate Password</Text></TouchableOpacity>
+          <TouchableOpacity><Text>Reset</Text></TouchableOpacity>
+         </View>
+         </>
+       )}
+     </Formik>
+        </View>
+      </SafeAreaView>
+
+
+    </ScrollView>
+
     )
   }
 

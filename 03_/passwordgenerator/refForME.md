@@ -7,3 +7,4 @@ npm i react-native-bouncy-checkbox
 
 3. npm install formik --save
 
+4. 
