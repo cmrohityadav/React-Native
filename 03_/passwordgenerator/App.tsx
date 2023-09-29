@@ -178,6 +178,13 @@ export default function App() {
             )}
           </Formik>
         </View>
+        {isPasswordGenerated?(
+              <View style={[styles.card,styles.cardElevated]}>
+                <Text style={styles.subTitle}> Result: </Text>
+                <Text style={styles.description}>Long press to copy </Text>
+                <Text  selectable={true} style={styles.generatedPassword}>{password}</Text>
+              </View>
+        ):null}
       </SafeAreaView>
     </ScrollView>
   );
