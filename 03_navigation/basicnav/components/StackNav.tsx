@@ -5,13 +5,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './Home';
 import Login from './Login';
 import About from './About';
-import { BottomTabBar } from '@react-navigation/bottom-tabs';
+import {BottomTabBar} from '@react-navigation/bottom-tabs';
 import BottomTabNav from './BottomTabNav';
 import BottomTopMaterial from './BottomTopMaterial';
 const Stack = createNativeStackNavigator();
 const StackNav = () => {
-
-  
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -49,8 +47,8 @@ const StackNav = () => {
             },
           }}
         />
-        <Stack.Screen name='BottonTabs' component={BottomTabNav}/>
-        <Stack.Screen name='BottomTopMaterial' component={BottomTopMaterial}/>
+        <Stack.Screen name="BottonTabs" component={BottomTabNav} />
+        <Stack.Screen name="BottomTopMaterial" component={BottomTopMaterial} />
       </Stack.Navigator>
     </NavigationContainer>
   );

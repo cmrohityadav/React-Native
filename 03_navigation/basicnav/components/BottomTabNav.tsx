@@ -13,7 +13,7 @@ const BottomTabNav = () => {
     
     <Tabs.Navigator>
         <Tabs.Screen options={{
-            tabBarIcon:
+          
         }} name='Tab1' component={TabOne}/>
         <Tabs.Screen name='Tab2' component={TabTwo}/>
         <Tabs.Screen name='Tab3' component={TabThree}/>
