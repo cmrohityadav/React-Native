@@ -1,0 +1,74 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Expo files
+.expo/
+.expo-shared/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+*.log.*
+
+# Build outputs
+*.apk
+*.aar
+*.aab
+
+# iOS
+ios/
+*.pbxproj
+xcuserdata/
+*.xcworkspace
+Pods/
+
+# Android
+android/
+*.keystore
+local.properties
+.idea/
+
+# Buck files
+buck-out/
+.buckconfig
+.buckversion
+.buckd/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+
+# Other files
+.env
+.env.*
+*.iml
+*.swp
+*.vscode
+*__tests__
+*.bundle
+
+# React Native CLI cache
+tmp/
+
+!.yarn/versions
+
+# Global ignore for all such folders
+*/android/
+*/ios/
+*/node_modules/
+
+
+# Ignore specific folders in each React Native project
+project1/android/
+project1/ios/
+project1/node_modules/
+
+project2/android/
+project2/ios/
+project2/node_modules/
