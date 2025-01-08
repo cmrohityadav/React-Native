@@ -52,6 +52,9 @@ fastlane/screenshots/
 *.vscode
 *__tests__
 *.bundle
+*.yarn
+
+
 
 # React Native CLI cache
 tmp/
