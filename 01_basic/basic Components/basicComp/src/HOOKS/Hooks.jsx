@@ -3,6 +3,7 @@ import React from 'react'
 import UseLayoutEffect from './UseLayoutEffect'
 import UseMemo from './UseMemo'
 import UseCallBack from './UseCallBack'
+import ForwardRefComp from './ForwardRefComp'
 
 
 //useLayoutEffect
@@ -14,7 +15,8 @@ export default function Hooks() {
       
       {/* <UseLayoutEffect/> */}
       {/* <UseMemo/> */}
-      <UseCallBack/>
+      {/* <UseCallBack/> */}
+      <ForwardRefComp/>
     </View>
   )
 }
