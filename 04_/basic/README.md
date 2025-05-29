@@ -74,3 +74,19 @@ const styles = StyleSheet.create({
 ```
 
 
+## Button
+- A basic button component for handling touches that should render nicely on any platform.
+- we cannot style it
+```jsx
+      <Button 
+      title="Click Me" 
+      color={'orange'} 
+      onPress={()=> 
+      Alert.alert('This is title Rohit','Hi....Rohit This is message')}/>
+
+```
+
+
+
+
+
