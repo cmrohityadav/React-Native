@@ -1,4 +1,4 @@
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import React from 'react';
 
 const App = () => {
@@ -12,6 +12,10 @@ const App = () => {
       </View>
 
       {/* Text component */}
+      <Text style={styles.myFirstText}>My first Text</Text>
+      <Text style={styles.nestedText}>
+        Text component can be <Text style={styles.nestedTextBold}>Nested</Text>
+      </Text>
     </View>
   );
 };
@@ -38,6 +42,18 @@ const styles = StyleSheet.create({
     height:50,
     backgroundColor:'green',
   },
+  myFirstText:{
+    fontSize:30,
+    textDecorationLine:'underline',
+    color:'black',
+  },
+  nestedText:{
+    fontSize:15,
+  },
+  nestedTextBold:{
+    fontWeight:'800',
+  },
+
 });
 
 export default App;
