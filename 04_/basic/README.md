@@ -52,4 +52,25 @@ const styles = StyleSheet.create({
 });
 ```
 ## Text
-- A component for displaying text.
+- A component for displaying text
+
+
+
+## Image
+- A component for displaying images.
+- below syntax just provide src just like html
+```jsx
+      <Image style={styles.image} src="https://avatars.githubusercontent.com/u/100376340?v=4" />
+```
+```jsx
+      <Image style={styles.image} source={{uri:'https://th.bing.com/th/id/OIP.EEk3SQRrEku6QN3IU5gbXAHaDB?rs=1&pid=ImgDetMain'}} />
+
+
+```
+- Local Image
+```jsx
+      <Image source={require('./assets/avatar_1692959594.png')} />
+
+```
+
+
