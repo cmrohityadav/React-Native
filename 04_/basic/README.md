@@ -87,6 +87,46 @@ const styles = StyleSheet.create({
 ```
 
 
+## TextInput
+- A foundational component for inputting text into the app via a keyboard. 
+- Props provide configurability for several features, such as auto-correction, auto-capitalization, placeholder text, and different keyboard types, such as a numeric keypad
+```jsx
+ <TextInput style={styles.input}
+        value={textValue}
+        onChangeText={setTextValue}
+        placeholder='user type here'
+  />
 
+```
 
+## ScrollView
+
+- ScrollView is a core component in React Native used for scrollable content.
+
+- It renders all child components at once, which may lead to performance issues with long lists (use FlatList instead for large data sets).
+
+- Requires bounded height to work correctly; unbounded parents or missing {flex: 1} may cause layout issues.
+
+- Use ScrollView for small, simple content.
+
+- Use FlatList for large lists, as it renders lazily and improves performance.
+```jsx
+<ScrollView
+      style={styles.scrollView}
+      contentContainerStyle={styles.scrollViewContent}
+      bounces={true}
+      nestedScrollEnabled={true}
+      showsVerticalScrollIndicator={true}
+      >
+        {
+            [...Array(20)].map((_,index)=>(
+                <View key={index} style={styles.box}>
+                    <Text style={styles.boxText}>
+                        {index + 1}
+                    </Text>
+                </View>
+            ))
+        }
+      </ScrollView>
+```
 

@@ -1,37 +1,32 @@
-import {View, StyleSheet, Text, Image, Button, Alert} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import React from 'react';
+import Basic from './src/components/Basic';
+import TextInputComponent from './src/components/TextInput';
+import ScrollViewComponent from './src/components/ScrollViewComponent';
 
 const App = () => {
   return (
     <View style={styles.container}>
-      {/* View Components */}
-      <View style={styles.boxContainer}>
-        <View  style={styles.redBox}/>
-        <View style={styles.blueBox} />
-        <View  style={styles.greenBox}/>
-      </View>
+      {/* ScrollView Component */}
+      <ScrollView 
+      contentContainerStyle={styles.scrollView}
+      // style={styles.scrollView}
+      nestedScrollEnabled={true}
+      >
 
-      {/* Text component */}
-      <Text style={styles.myFirstText}>My first Text</Text>
-      <Text style={styles.nestedText}>
-        Text component can be <Text style={styles.nestedTextBold}>Nested</Text>
-      </Text>
-      {/* Text component end*/}
+      
+      {/* Basic Component */}
+      <Basic/>
 
+      {/* Text Input */}
+      <TextInputComponent/>
 
-
-      {/* Image Components */}
-      {/* remote image */}
-      <Image style={styles.image} src="https://avatars.githubusercontent.com/u/100376340?v=4" />
-      <Image style={styles.image} source={{uri:'https://th.bing.com/th/id/OIP.EEk3SQRrEku6QN3IU5gbXAHaDB?rs=1&pid=ImgDetMain'}} />
-      {/* Local Image */}
-      <Image  source={require('./assets/avatar_1692959594.png')} style={styles.image}  />
-      {/* Image Components end*/}
+      {/* ScrollView Component */}
+      <ScrollViewComponent/>
 
 
+      </ScrollView>
 
-      {/* Button Component */}
-      <Button title="Click Me" color={'orange'} onPress={()=> Alert.alert('This is title Rohit','Hi....Rohit This is message')}/>
     </View>
   );
 };
@@ -74,6 +69,11 @@ const styles = StyleSheet.create({
     height:150,
     resizeMode:'contain',
     marginBottom:10,
+  },
+  scrollView:{
+    margin:20,
+    borderColor:'red',
+    borderWidth:20
   },
 
 });
