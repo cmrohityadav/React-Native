@@ -4,6 +4,7 @@ import Basic from './src/components/Basic';
 import TextInputComponent from './src/components/TextInput';
 import ScrollViewComponent from './src/components/ScrollViewComponent';
 import FlexLayout from './src/components/FlexLayout';
+import TouchableComponent from './src/components/TouchableComponent';
 
 const App = () => {
   return (
@@ -28,6 +29,9 @@ const App = () => {
 
       {/* Flex layout */}
       <FlexLayout/>
+
+      {/* Touchable component */}
+      <TouchableComponent/>
       </ScrollView>
 
     </View>

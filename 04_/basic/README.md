@@ -170,3 +170,37 @@ const styles = StyleSheet.create({
 });
 
 ```
+
+## TouchableHighlight
+
+- A wrapper for making views respond properly to touches. On press down, the opacity of the wrapped view is decreased, which allows the underlay color to show through, darkening or tinting the view
+- TouchableHighlight must have one child (not zero or more than one). If you wish to have several child components, wrap them in a View
+
+```jsx
+<TouchableHighlight
+      onPress={()=> setTouchableHighlightCount(pre=>pre + 1)}
+      style={styles.button}
+      underlayColor={'#FF0000'}
+      >
+        <View >
+          <Text style={styles.btnText}>TouchableHighlight</Text>
+          <Text style={styles.btnText}>TouchableHighlight: {touchableHighlightCount}</Text>
+        </View>
+</TouchableHighlight>
+```
+
+## TouchableOpacity
+- A wrapper for making views respond properly to touches. On press down, the opacity of the wrapped view is decreased, dimming it
+- TouchableOpacity can have multiple children — unlike TouchableHighlight, which strictly requires only one child
+```jsx
+<TouchableOpacity
+      onPress={()=>setOpacityCount(opacityCount + 1)}
+      style={styles.button}
+      >
+        <Text style={styles.btnText}>Touchable Opacity</Text>
+        <Text style={styles.btnText}>Touchable count: {opacityCount}</Text>
+      </TouchableOpacity>
+```
+
+
+
