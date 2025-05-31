@@ -130,3 +130,43 @@ const styles = StyleSheet.create({
       </ScrollView>
 ```
 
+## Layout with Flexbox
+-  A component can specify the layout of its children using the Flexbox algorithm. 
+- Flexbox is designed to provide a consistent layout on different screen sizes
+
+- Flexbox works the same way in React Native as it does in CSS on the web, with a few exceptions. 
+- The defaults are different, with **flexDirection** defaulting to **column** instead of row, alignContent defaulting to flex-start instead of stretch, flexShrink defaulting to 0 instead of 1, the flex parameter only supporting a single number
+
+### Flex
+- flex will define how your items are going to “fill” over the available space along your main axis. Space will be divided according to each element's flex property.
+
+- In the following example, the red, orange, and green views are all children in the container view that has flex: 1 set. 
+- The red view uses flex: 1 , the orange view uses flex: 2, and the green view uses flex: 3 .
+- 1+2+3 = 6, which means that the red view will get 1/6 of the space, the orange 2/6 of the space, and the green 3/6 of the space.
+
+```jsx
+const Flex = () => {
+  return (
+    <View
+      style={[
+        styles.container,
+        {
+          // Try setting `flexDirection` to `"row"`.
+          flexDirection: 'column',
+        },
+      ]}>
+      <View style={{flex: 1, backgroundColor: 'red'}} />
+      <View style={{flex: 2, backgroundColor: 'darkorange'}} />
+      <View style={{flex: 3, backgroundColor: 'green'}} />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+});
+
+```

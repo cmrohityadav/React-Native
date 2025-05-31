@@ -3,6 +3,7 @@ import React from 'react';
 import Basic from './src/components/Basic';
 import TextInputComponent from './src/components/TextInput';
 import ScrollViewComponent from './src/components/ScrollViewComponent';
+import FlexLayout from './src/components/FlexLayout';
 
 const App = () => {
   return (
@@ -10,7 +11,8 @@ const App = () => {
       {/* ScrollView Component */}
       <ScrollView 
       contentContainerStyle={styles.scrollView}
-      // style={styles.scrollView}
+      // style={[styles.scrollView,{backgroundColor:'black'}]}
+      
       nestedScrollEnabled={true}
       >
 
@@ -24,7 +26,8 @@ const App = () => {
       {/* ScrollView Component */}
       <ScrollViewComponent/>
 
-
+      {/* Flex layout */}
+      <FlexLayout/>
       </ScrollView>
 
     </View>
@@ -73,7 +76,8 @@ const styles = StyleSheet.create({
   scrollView:{
     margin:20,
     borderColor:'red',
-    borderWidth:20
+    borderWidth:5,
+    padding:5
   },
 
 });
