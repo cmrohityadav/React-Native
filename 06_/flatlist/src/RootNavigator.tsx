@@ -3,10 +3,12 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import FlatListScreen from './screens/FlatListScreen';
+import SectionListScreen from './screens/SectionListScreen';
 
 export type RootStackParamsList={
     HomeScreen:undefined;
     FlatListScreen:undefined;
+    SectionListScreen:undefined;
 }
 const RootNavigator:React.FC = () => {
 const RootStack = createStackNavigator<RootStackParamsList>();
@@ -14,6 +16,8 @@ const RootStack = createStackNavigator<RootStackParamsList>();
    <RootStack.Navigator>
     <RootStack.Screen name="HomeScreen" component={HomeScreen} />
     <RootStack.Screen name="FlatListScreen" component={FlatListScreen} />
+    <RootStack.Screen name="SectionListScreen" component={SectionListScreen} />
+
    </RootStack.Navigator>
   );
 };
