@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, Text, View } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp} from '@react-navigation/stack';
@@ -18,11 +18,11 @@ const HomeScreen:React.FC = () => {
       <Button  title="Open Flat List Demo" onPress={()=>navigation.navigate('FlatListScreen') } />
       <Button title="Open Section List Demo" onPress={()=>navigation.navigate('SectionListScreen') } />
       <Button title="Open Touchable Demo" onPress={()=>navigation.navigate('TouchableScreen') } />
-      <Button title="Open modal Demo" onPress={()=>navigation.navigate('TouchableScreen') } />
+      <Button title="Open modal Demo" onPress={()=>navigation.navigate('ModalScreenDemo') } />
     </View>
   );
 };
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+// const styles = StyleSheet.create({});
