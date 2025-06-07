@@ -7,6 +7,7 @@ import SectionListScreen from './screens/SectionListScreen';
 import TouchableScreen from './screens/TouchableScreen';
 import ModalScreenDemo from './screens/ModalScreenDemo';
 import PullToRefresh from './screens/PullToRefresh';
+import DataFechingDemo from './screens/DataFechingDemo';
 
 export type RootStackParamsList={
     HomeScreen:undefined;
@@ -27,6 +28,7 @@ const RootStack = createStackNavigator<RootStackParamsList>();
     <RootStack.Screen name="TouchableScreen" component={TouchableScreen} />
     <RootStack.Screen name="ModalScreenDemo" component={ModalScreenDemo} />
     <RootStack.Screen name="PullToRefresh" component={PullToRefresh} />
+    <RootStack.Screen name="DataFechingDemo" component={DataFechingDemo} />
 
    </RootStack.Navigator>
   );
