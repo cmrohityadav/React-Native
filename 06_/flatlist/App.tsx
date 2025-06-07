@@ -1,17 +1,19 @@
-import { StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import RootNavigator from './src/RootNavigator';
+import {ThemeProvider} from './src/context/ThemeContext';
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <RootNavigator/>
-    </NavigationContainer>
+    <ThemeProvider>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 };
 
 export default App;
-
 
 const styles = StyleSheet.create({});

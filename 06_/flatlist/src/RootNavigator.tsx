@@ -8,6 +8,7 @@ import TouchableScreen from './screens/TouchableScreen';
 import ModalScreenDemo from './screens/ModalScreenDemo';
 import PullToRefresh from './screens/PullToRefresh';
 import DataFechingDemo from './screens/DataFechingDemo';
+import ThemeScreen from './screens/ThemeScreen';
 
 export type RootStackParamsList={
     HomeScreen:undefined;
@@ -17,6 +18,7 @@ export type RootStackParamsList={
     ModalScreenDemo:undefined;
     PullToRefresh:undefined
     DataFechingDemo:undefined;
+    ThemeScreen:undefined;
 }
 const RootNavigator:React.FC = () => {
 const RootStack = createStackNavigator<RootStackParamsList>();
@@ -29,6 +31,7 @@ const RootStack = createStackNavigator<RootStackParamsList>();
     <RootStack.Screen name="ModalScreenDemo" component={ModalScreenDemo} />
     <RootStack.Screen name="PullToRefresh" component={PullToRefresh} />
     <RootStack.Screen name="DataFechingDemo" component={DataFechingDemo} />
+    <RootStack.Screen name="ThemeScreen" component={ThemeScreen} />
 
    </RootStack.Navigator>
   );
