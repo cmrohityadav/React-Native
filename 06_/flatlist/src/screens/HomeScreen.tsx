@@ -19,6 +19,7 @@ const HomeScreen:React.FC = () => {
       <Button title="Open Section List Demo" onPress={()=>navigation.navigate('SectionListScreen') } />
       <Button title="Open Touchable Demo" onPress={()=>navigation.navigate('TouchableScreen') } />
       <Button title="Open modal Demo" onPress={()=>navigation.navigate('ModalScreenDemo') } />
+      <Button title="Open Pull to Refresh Demo" onPress={()=>navigation.navigate('PullToRefresh') } />
     </View>
   );
 };
