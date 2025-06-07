@@ -15,6 +15,7 @@ export type RootStackParamsList={
     TouchableScreen:undefined;
     ModalScreenDemo:undefined;
     PullToRefresh:undefined
+    DataFechingDemo:undefined;
 }
 const RootNavigator:React.FC = () => {
 const RootStack = createStackNavigator<RootStackParamsList>();
