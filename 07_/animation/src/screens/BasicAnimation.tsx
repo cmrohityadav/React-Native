@@ -12,6 +12,7 @@ import React, {useRef} from 'react';
 const BasicAnimation = () => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const translateAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(1)).current;
   const handleFadeIn = () => {
     Animated.timing(fadeAnim, {
       toValue: 1,
@@ -26,13 +27,36 @@ const BasicAnimation = () => {
       useNativeDriver: true,
     }).start();
   };
-  const handleTranslate = () =>{
-     Animated.timing(translateAnim, {
-      toValue:100,
+  const handleTranslate = () => {
+    Animated.timing(translateAnim, {
+      toValue: 100,
       duration: 1000,
-      easing:Easing.bezier(0.25,0.1,0.2,1),
+      easing: Easing.bezier(0.25, 0.1, 0.2, 1),
       useNativeDriver: true,
     }).start();
+  };
+  const handleScale = ()=>{
+    Animated.sequence([Animated.timing(scaleAnim,{
+      toValue:2,
+      duration:500,
+      useNativeDriver:true,
+    }),
+    Animated.timing(scaleAnim,{
+      toValue:3,
+      duration:500,
+      useNativeDriver:true,
+    }),
+    Animated.timing(scaleAnim,{
+      toValue:2,
+      duration:500,
+      useNativeDriver:true,
+    }),
+    Animated.timing(scaleAnim,{
+      toValue:1,
+      duration:500,
+      useNativeDriver:true,
+    }),
+  ]).start();
   };
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -42,11 +66,8 @@ const BasicAnimation = () => {
       <View style={styles.demoContainer}>
         <Text style={styles.headerText}>FadeIn and FadeOut Animation Demo</Text>
         <Animated.View
-          style={[
-            styles.box,
-            styles.fadeBox,
-            {opacity: fadeAnim},
-          ]}/>
+          style={[styles.box, styles.fadeBox, {opacity: fadeAnim}]}
+        />
         <View style={styles.buttonContainer}>
           <Button title="Fade In" onPress={handleFadeIn} />
           <Button title="Fade Out" onPress={handleFadeOut} />
@@ -58,16 +79,23 @@ const BasicAnimation = () => {
           style={[
             styles.box,
             styles.translateBox,
-            {
-              transform: [
-                {
-                  translateX: translateAnim,
-                },
-              ],
-            },
-          ]}/>
+            {transform: [{translateX: translateAnim}]},
+          ]}
+        />
       </View>
-      <Button title="translate" onPress={handleTranslate}/>
+      <Button title="translate" onPress={handleTranslate} />
+
+      {/* Scale Animation */}
+      <Text style={styles.headerText}>Scale Animation Demo</Text>
+      <Animated.View
+        style={[
+          styles.box,
+          styles.scaleBox,
+          {transform: [{scale:scaleAnim}]},
+        ]}
+      />
+      <Button title="Scale" onPress={handleScale} />
+
     </ScrollView>
   );
 };
@@ -115,5 +143,8 @@ const styles = StyleSheet.create({
   },
   translateBox: {
     backgroundColor: '#89c825',
+  },
+  scaleBox:{
+     backgroundColor: '#11b825',
   },
 });
