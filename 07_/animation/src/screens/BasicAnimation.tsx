@@ -13,6 +13,7 @@ const BasicAnimation = () => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const translateAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(1)).current;
+  const RotateAnim = useRef(new Animated.Value(0)).current;
   const handleFadeIn = () => {
     Animated.timing(fadeAnim, {
       toValue: 1,
@@ -35,6 +36,8 @@ const BasicAnimation = () => {
       useNativeDriver: true,
     }).start();
   };
+
+  
   const handleScale = ()=>{
     Animated.sequence([Animated.timing(scaleAnim,{
       toValue:2,
@@ -58,6 +61,19 @@ const BasicAnimation = () => {
     }),
   ]).start();
   };
+
+  const handleRotate = () =>{
+Animated.timing(RotateAnim,{
+      toValue:2,
+      duration:1000,
+      useNativeDriver:true,
+    }).start(()=>
+    RotateAnim.setValue(0));
+  };
+  const spin = RotateAnim.interpolate({
+    inputRange:[0,1],
+    outputRange:['0deg','360deg']
+  });
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.headerText}>Basic Animation Demo</Text>
@@ -96,6 +112,16 @@ const BasicAnimation = () => {
       />
       <Button title="Scale" onPress={handleScale} />
 
+         {/* Rotate Animation */}
+      <Text style={styles.headerText}> Rotate Animation Demo</Text>
+      <Animated.View
+        style={[
+          styles.box,
+          styles.RotateBox,
+          {transform: [{rotate:spin}]},
+        ]}
+      />
+      <Button title="Roate" onPress={handleRotate} />
     </ScrollView>
   );
 };
@@ -146,5 +172,8 @@ const styles = StyleSheet.create({
   },
   scaleBox:{
      backgroundColor: '#11b825',
+  },
+  RotateBox:{
+backgroundColor: '#51b825',
   },
 });
