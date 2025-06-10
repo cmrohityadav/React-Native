@@ -20,10 +20,20 @@ const InterpolationScreen = () => {
         inputRange:[0,1],
         outputRange:['0deg','360deg'],
     });
+
+    const borderRadius = animation.interpolate({
+        inputRange:[0,1],
+        outputRange:[0,100],
+    });
+
+    const size = animation.interpolate({
+        inputRange:[0,1],
+        outputRange:[100,200],
+    });
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Interpolation</Text>
-      <Animated.View style={[styles.box,{backgroundColor,transform:[{rotate}]}]}>
+      <Animated.View style={[styles.box,{backgroundColor,transform:[{rotate}],borderRadius,width:size,height:size}]}>
         <Text style={styles.boxText}>Interpolate Me!</Text>
       </Animated.View>
       <Button title="Star Animation" onPress={hanleStartAnimation}/>
