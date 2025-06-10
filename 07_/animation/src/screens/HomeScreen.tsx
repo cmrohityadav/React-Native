@@ -10,6 +10,7 @@ const HomeScreen = () => {
   return (
     <View>
       <Button title="Open basic Animation" onPress={()=> navigation.navigate('BasicAnimation')} />
+      <Button title="Interpolation Demo" onPress={()=> navigation.navigate('InterpolationScreen')} />
     </View>
   );
 };

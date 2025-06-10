@@ -234,10 +234,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#89c825',
   },
   scaleBox:{
-     backgroundColor: '#11b825',
+    backgroundColor: '#11b825',
   },
   RotateBox:{
-backgroundColor: '#51b825',
+    backgroundColor: '#51b825',
   },
   springBox:{
     backgroundColor: '#6EACDA',
