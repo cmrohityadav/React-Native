@@ -11,6 +11,8 @@ const HomeScreen = () => {
     <View>
       <Button title="Open basic Animation" onPress={()=> navigation.navigate('BasicAnimation')} />
       <Button title="Interpolation Demo" onPress={()=> navigation.navigate('InterpolationScreen')} />
+      <Button title="Combination animation Demo" onPress={()=> navigation.navigate('CombinationAnimationScreen')} />
+      <Button title="Gesture animation Demo" onPress={()=> navigation.navigate('GestureAnimationScreen')} />
     </View>
   );
 };
