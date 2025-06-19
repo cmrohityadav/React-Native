@@ -4,15 +4,30 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableHighlight,
   TouchableOpacity,
   View,
 } from 'react-native';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../storage/store';
+import { addTask } from '../storage/tasksSlice';
 
 const TaskListScreen = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
+
+  const dispatch =useDispatch<AppDispatch>()
+  const handleAddNewTask =()=>{
+    if(newTaskTitle.trim()){
+      dispatch(addTask({
+        title:newTaskTitle.trim(),
+        completed:false
+      }))
+
+      setNewTaskTitle('');
+      setIsModalVisible(false);
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -59,6 +74,7 @@ const TaskListScreen = () => {
               <TouchableOpacity
                 style={[styles.modalBtn,styles.submitBtn]}
                 // onPress={() => setIsModalVisible(false)}
+                onPress={handleAddNewTask}
               >
                 <Text style={[styles.addCloseBtnText]}>Add Task</Text>
               </TouchableOpacity>
