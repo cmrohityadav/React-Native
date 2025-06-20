@@ -1,4 +1,5 @@
 import {
+  FlatList,
   KeyboardAvoidingView,
   Modal,
   StyleSheet,
@@ -7,16 +8,37 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../storage/store';
-import { addTask } from '../storage/tasksSlice';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../storage/store';
+import { addTask, fetchTasks, Task } from '../storage/tasksSlice';
+import Animated, { FadeInRight, FadeOutLeft,Layout } from 'react-native-reanimated';
 
 const TaskListScreen = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
   const dispatch =useDispatch<AppDispatch>()
+  const tasks = useSelector((state:RootState)=>state.tasks.tasks);
+  const status = useSelector((state:RootState)=>state.tasks.status);
+  // console.log("tasksList",tasks)
+  const renderEachTaskUi = ({item}:{item:Task}) =>(
+    <Animated.View
+    entering={FadeInRight}
+    exiting={FadeOutLeft}
+    layout={Layout.springify()}
+    >
+      <Text>{item.title}</Text>
+      <TouchableOpacity>
+        <Text>Delete</Text>
+      </TouchableOpacity>
+    </Animated.View>
+  )
+  useEffect(()=>{
+    if(status==='idle'){
+        dispatch(fetchTasks())
+    }
+  },[status,dispatch])
   const handleAddNewTask =()=>{
     if(newTaskTitle.trim()){
       dispatch(addTask({
@@ -31,7 +53,11 @@ const TaskListScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* render list of tasks here */}
+      <FlatList
+      data={tasks}
+      renderItem={renderEachTaskUi}
+      keyExtractor={rohit=>rohit.id}
+      />
       <TouchableOpacity
         style={styles.addBtn}
         onPress={() => setIsModalVisible(true)}

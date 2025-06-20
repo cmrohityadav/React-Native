@@ -1,5 +1,7 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk,PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 export interface Task {
     id :string;
     title:string;
@@ -15,6 +17,21 @@ interface TasksState{
 export const addTask = createAsyncThunk('tasks/addTask',async(task:Omit<Task,'id'>)=>{
     console.log(task)
     const newTask={...task,id:Date.now().toString()}
+    const storedTasks = await AsyncStorage.getItem('tasks');
+    const tasks = storedTasks ? JSON.parse(storedTasks): [];
+    tasks.push(newTask);
+
+    await AsyncStorage.setItem('tasks',JSON.stringify(tasks));
+
+    return newTask;
+
+});
+
+
+export const fetchTasks = createAsyncThunk('tasks/fetchTasks',async()=>{
+    const storedTasks= await AsyncStorage.getItem('tasks');
+    return storedTasks ? JSON.parse(storedTasks): [];
+
 })
 const initialState: TasksState={
     tasks:[],
@@ -23,8 +40,22 @@ const initialState: TasksState={
 }
 const tasksSlice = createSlice({
     name:'tasks',
-    initialState:{},
-    reducers:{}
+    initialState,
+    reducers:{},
+    extraReducers: builder =>{
+        builder.addCase(fetchTasks.pending,state=>{
+            state.status='loading'
+        }).addCase(fetchTasks.fulfilled, (state,action:PayloadAction<Task[]>)=>{
+            state.status='succeeded'
+            state.tasks = action.payload
+        }).addCase(fetchTasks.rejected,(state,action)=>{
+            state.status='failed'
+            state.error=action.error.message || null
+        }).addCase(addTask.fulfilled,(state,action)=>{
+            state.tasks.push(action.payload)
+
+        })
+    }
 });
 
 export default tasksSlice.reducer;
