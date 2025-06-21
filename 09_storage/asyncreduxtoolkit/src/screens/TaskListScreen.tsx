@@ -12,7 +12,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../storage/store';
-import { addTask, deleteTask, fetchTasks, Task } from '../storage/tasksSlice';
+import { addTask, deleteTask, fetchTasks, Task, toggleTask } from '../storage/tasksSlice';
 import Animated, { FadeInRight, FadeOutLeft,Layout } from 'react-native-reanimated';
 
 const TaskListScreen = () => {
@@ -30,6 +30,7 @@ const TaskListScreen = () => {
     layout={Layout.springify()}
     >
       <TouchableOpacity
+      onPress={()=> dispatch(toggleTask(item.id))}
       style={[styles.taskItem,item.completed && styles.completedTaskItem]}
       >
         <Text style={[styles.taskItemText,item.completed && styles.completedTaskItemText]}>{item.title}</Text>
