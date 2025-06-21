@@ -28,9 +28,13 @@ const TaskListScreen = () => {
     exiting={FadeOutLeft}
     layout={Layout.springify()}
     >
-      <Text>{item.title}</Text>
-      <TouchableOpacity>
-        <Text>Delete</Text>
+      <TouchableOpacity
+      style={[styles.taskItem,item.completed && styles.completedTaskItem]}
+      >
+        <Text style={[styles.taskItemText,item.completed && styles.completedTaskItemText]}>{item.title}</Text>
+      <TouchableOpacity style={styles.deleteTaskBtn}>
+        <Text style={styles.deleteTaskBtnText}>Delete</Text>
+      </TouchableOpacity>
       </TouchableOpacity>
     </Animated.View>
   )
@@ -200,6 +204,38 @@ const styles = StyleSheet.create({
     backgroundColor:'#b912a3',
 
   },
+  taskItem:{
+    flexDirection:'row',
+    alignItems:'center',
+    backgroundColor:'#ffffff',
+    padding:15,
+    marginVertical:8,
+    borderRadius:8,
+    elevation:2
+
+  },
+  completedTaskItem:{
+    opacity:0.7,
+
+  },
+  taskItemText:{
+    marginLeft:10,
+    fontSize:16,
+    flex:1,
+  },
+  completedTaskItemText:{
+    textDecorationLine:'line-through'
+  },
+  deleteTaskBtn:{
+    backgroundColor:'#e35548',
+    padding:12,
+    borderRadius:20,
+  },
+  deleteTaskBtnText:{
+    fontSize:16,
+    fontWeight:'bold',
+    color:'#fff'
+  }
 
 
   
