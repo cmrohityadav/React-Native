@@ -33,6 +33,13 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks',async()=>{
     return storedTasks ? JSON.parse(storedTasks): [];
 
 })
+
+export const deleteTask=createAsyncThunk('tasks/delete',async(taskId:string,{getState})=>{
+    const state = getState() as {tasks:TasksState};
+    const updatedTasks=state.tasks.tasks.filter((item)=>item.id !== taskId);
+    await AsyncStorage.setItem('tasks',JSON.stringify(updatedTasks));
+    return taskId;    
+})
 const initialState: TasksState={
     tasks:[],
     status:'idle',
@@ -54,6 +61,8 @@ const tasksSlice = createSlice({
         }).addCase(addTask.fulfilled,(state,action)=>{
             state.tasks.push(action.payload)
 
+        }).addCase(deleteTask.fulfilled,(state,action:PayloadAction<string>)=>{
+            state.tasks=state.tasks.filter(item=>item.id!==action.payload)
         })
     }
 });

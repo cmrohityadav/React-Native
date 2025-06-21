@@ -1,4 +1,5 @@
 import {
+  Alert,
   FlatList,
   KeyboardAvoidingView,
   Modal,
@@ -11,7 +12,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../storage/store';
-import { addTask, fetchTasks, Task } from '../storage/tasksSlice';
+import { addTask, deleteTask, fetchTasks, Task } from '../storage/tasksSlice';
 import Animated, { FadeInRight, FadeOutLeft,Layout } from 'react-native-reanimated';
 
 const TaskListScreen = () => {
@@ -32,12 +33,29 @@ const TaskListScreen = () => {
       style={[styles.taskItem,item.completed && styles.completedTaskItem]}
       >
         <Text style={[styles.taskItemText,item.completed && styles.completedTaskItemText]}>{item.title}</Text>
-      <TouchableOpacity style={styles.deleteTaskBtn}>
+      <TouchableOpacity 
+        style={styles.deleteTaskBtn}
+        onPress={()=>handleDeleteTask(item.id)}
+        >
         <Text style={styles.deleteTaskBtnText}>Delete</Text>
       </TouchableOpacity>
       </TouchableOpacity>
     </Animated.View>
   )
+  const handleDeleteTask = (taskId:string)=>{
+    Alert.alert('Delete Task','Are you sure that you want to delete this task?',
+    [{
+      text:'Cancle',
+      style:'cancel'
+    },
+    {
+        text: 'Delete',
+        style:'destructive',
+        onPress:()=> dispatch(deleteTask(taskId)),
+
+    }]
+  )
+  }
   useEffect(()=>{
     if(status==='idle'){
         dispatch(fetchTasks())
