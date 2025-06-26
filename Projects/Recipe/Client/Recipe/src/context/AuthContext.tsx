@@ -21,7 +21,7 @@ export const AuthProvider:React.FC<{children:ReactNode}> = ({children})=>{
     const [isLoading,setIsLoading]=useState<boolean>(true);
 
     const SignUp = async(email:string,password:string): Promise<boolean>=>{
-
+        console.log(email,password)
 
         return true;
     }
