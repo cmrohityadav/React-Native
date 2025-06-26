@@ -1,11 +1,16 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamsList } from '../navigation/RootNavigation'
 import { useNavigation } from '@react-navigation/native'
-type SignUpScreenNavigationParams = StackNavigationProp<RootStackParamsList,'SignUp'>
+type SignUpScreenNavigationParams = StackNavigationProp<RootStackParamsList,'SignUp'>;
 const SignUpScreen:React.FC = () => {
-    const navigation=useNavigation<SignUpScreenNavigationParams>()
+    const navigation=useNavigation<SignUpScreenNavigationParams>();
+    const [email,setEmail]= useState('');
+    const [password,setPassword]= useState('');
+    const handleSignUp= async() =>{
+
+    }
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Sign Up </Text>
@@ -13,14 +18,21 @@ const SignUpScreen:React.FC = () => {
         style={styles.input}
         placeholder='Email'
         keyboardType='email-address'
+        value={email}
+        onChangeText={setEmail}
         
       />
       <TextInput
         style={styles.input}
         placeholder='Password'
         secureTextEntry
+        value={password}
+        onChangeText={setPassword}
       />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity 
+        style={styles.button}
+        onPress={handleSignUp}
+      >
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
       <TouchableOpacity
