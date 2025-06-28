@@ -1,12 +1,90 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, Button, Alert, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import React, { useContext } from 'react'
+import { AuthContext } from '../context/AuthContext'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { RootStackParamsList } from '../navigation/RootNavigation'
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamsList,'Home'>;
+interface HomeScreenProp{
+  navigation:HomeScreenNavigationProp
+}
+const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
+  const {SignOut}=useContext(AuthContext);
 
-const HomeScreen:React.FC = () => {
+  const handleLogout= ()=>{
+    Alert.alert('Logout','are you sure you want to logout?',[{
+            text:'Cancel',
+            style:'cancel'
+          },
+        {
+          text:'Logout',
+          onPress:async()=> {
+              await SignOut();
+              navigation.replace('Login')
+          },
+        }
+        ]);
+  }
   return (
-    <View>
-      <Text>Home Screen</Text>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <TextInput
+          placeholder='Search Recipes ...'
+          style={styles.searchInput}
+        />
+        <TouchableOpacity style={styles.iconBtn}>
+          <Text style={styles.iconBtnText}>+</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          onPress={handleLogout}
+          style={styles.logoutButton}
+          >
+          <Text style={styles.logoutButtonText}>Logout</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
-
+const styles=StyleSheet.create({
+  container:{
+    flex:1,
+    color:'#f5f5f5',
+  },
+  header:{
+    flexDirection:'row',
+    padding:16,
+    alignItems:'center',
+    backgroundColor:'#007aff',
+  },
+  searchInput:{
+    flex:1,
+    height:45,
+    backgroundColor:'#ffffff',
+    borderRadius:20,
+    paddingHorizontal:16,
+    marginRight:15,
+  },
+  iconBtn:{
+    width:45,
+    height:45,
+    borderRadius:20,
+    backgroundColor:'#ffffff',
+    justifyContent:'center',
+    alignItems:'center',
+  },
+  iconBtnText:{
+    fontSize:20,
+    color:'#007aff',
+  },
+  logoutButton:{
+    padding:12,
+    backgroundColor:'#c5e31a',
+    marginLeft:12,
+    borderRadius:24,
+  },
+  logoutButtonText:{
+    fontSize:14,
+    fontWeight:'bold',
+    
+  }
+})
 export default HomeScreen

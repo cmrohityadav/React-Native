@@ -56,7 +56,7 @@ export const login =async(req:Request,res:Response):Promise<any>=>{
     },'JWTSecreat',{expiresIn:'1h'})
 
     return res.status(200).json({
-      success:'true',
+      success:true,
       token,
       userId:currentUser._id
     })
