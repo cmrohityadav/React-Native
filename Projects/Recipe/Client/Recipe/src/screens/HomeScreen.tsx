@@ -1,14 +1,17 @@
-import { View, Text, Button, Alert, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
-import React, { useContext } from 'react'
+import { View, Text, Alert, StyleSheet, TextInput, TouchableOpacity, Modal } from 'react-native'
+import React, { useContext, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamsList } from '../navigation/RootNavigation'
+import CreateRecipeForm from '../components/CreateRecipeForm'
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamsList,'Home'>;
 interface HomeScreenProp{
   navigation:HomeScreenNavigationProp
 }
 const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
   const {SignOut}=useContext(AuthContext);
+  const [showModal,setShowModal] = useState(false);
+  const [searchQuery,setSearchQuery]= useState('');
 
   const handleLogout= ()=>{
     Alert.alert('Logout','are you sure you want to logout?',[{
@@ -30,8 +33,13 @@ const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
         <TextInput
           placeholder='Search Recipes ...'
           style={styles.searchInput}
+          value={searchQuery}
+          onChangeText={setSearchQuery}
         />
-        <TouchableOpacity style={styles.iconBtn}>
+        <TouchableOpacity 
+          style={styles.iconBtn}
+          onPress={()=>setShowModal(true)}
+          >
           <Text style={styles.iconBtnText}>+</Text>
         </TouchableOpacity>
         <TouchableOpacity 
@@ -41,6 +49,17 @@ const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
           <Text style={styles.logoutButtonText}>Logout</Text>
         </TouchableOpacity>
       </View>
+
+      {/* render here all recipes */}
+
+      {/* Modal for creating new recipe */}
+      <Modal
+        visible={showModal}
+        onRequestClose={()=>setShowModal(false)}
+      >
+        <CreateRecipeForm onCancle={()=> setShowModal(false)}/>
+
+      </Modal>
     </View>
   )
 }
