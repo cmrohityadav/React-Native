@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { Picker } from '@react-native-picker/picker'
 import { Recipe } from '../context/RecipeContext';
@@ -13,11 +13,12 @@ const CreateRecipeForm:React.FC<CreateRecipeFormProps> = ({onCancle,onSubmit}) =
     const [description,setDescription]=useState('');
     const [difficulty,setDifficulty] = useState<'Easy' | 'Medium' | 'Hard'>('Easy');
 
+    
     const handleCreateRecipe = () =>{
         if(title && description){
             onSubmit({title,description,difficulty});
-        }esle{
-            
+        }else{
+            Alert.alert('Please fill all fields');
         }
     }
   return (

@@ -4,12 +4,14 @@ import { AuthContext } from '../context/AuthContext'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamsList } from '../navigation/RootNavigation'
 import CreateRecipeForm from '../components/CreateRecipeForm'
+import { Recipe, RecipeContext } from '../context/RecipeContext'
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamsList,'Home'>;
 interface HomeScreenProp{
   navigation:HomeScreenNavigationProp
 }
 const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
   const {SignOut}=useContext(AuthContext);
+  const {createRecipe}=useContext(RecipeContext);
   const [showModal,setShowModal] = useState(false);
   const [searchQuery,setSearchQuery]= useState('');
 
@@ -27,6 +29,10 @@ const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
         }
         ]);
   }
+
+ const  handleOncreateRecipeBtnSubmit = async(recipe: Omit<Recipe,'_id' | 'createdBy' | 'createdAt'>)=>{
+     await createRecipe(recipe);
+ }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -57,7 +63,9 @@ const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
         visible={showModal}
         onRequestClose={()=>setShowModal(false)}
       >
-        <CreateRecipeForm onCancle={()=> setShowModal(false)}/>
+        <CreateRecipeForm 
+        onSubmit={handleOncreateRecipeBtnSubmit}
+        onCancle={()=> setShowModal(false)}/>
 
       </Modal>
     </View>

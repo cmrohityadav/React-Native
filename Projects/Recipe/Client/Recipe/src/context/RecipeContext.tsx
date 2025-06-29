@@ -18,8 +18,8 @@ export const RecipeContext =createContext<RecipeContextData>({} as RecipeContext
 
 export const RecipeProvider:React.FC<{children:ReactNode}>=({children})=>{
     const [recipes,setRecipes]=useState<Recipe[]>([])
-    const createRecipe=async()=>{
-
+    const createRecipe=async(recipe:Omit<Recipe,'_id' | 'createdBy' | 'createdAt'>):Promise<void>=>{
+        
     }
     return <RecipeContext.Provider value={{createRecipe,recipes}}>
         {children}
