@@ -17,6 +17,7 @@ const CreateRecipeForm:React.FC<CreateRecipeFormProps> = ({onCancle,onSubmit}) =
     const handleCreateRecipe = () =>{
         if(title && description){
             onSubmit({title,description,difficulty});
+            
         }else{
             Alert.alert('Please fill all fields');
         }

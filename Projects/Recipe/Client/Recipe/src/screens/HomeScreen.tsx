@@ -32,6 +32,9 @@ const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
 
  const  handleOncreateRecipeBtnSubmit = async(recipe: Omit<Recipe,'_id' | 'createdBy' | 'createdAt'>)=>{
      await createRecipe(recipe);
+     setShowModal(false);
+     
+     
  }
   return (
     <View style={styles.container}>

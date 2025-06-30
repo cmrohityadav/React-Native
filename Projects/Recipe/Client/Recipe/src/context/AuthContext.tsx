@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 
-const API_URL = 'http://10.0.2.2:5000';
+export const API_URL = 'http://10.0.2.2:5000'; //dev
 
 interface AuthContextData{
     token:string | null;
