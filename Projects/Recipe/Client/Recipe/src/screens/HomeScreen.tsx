@@ -1,17 +1,18 @@
-import { View, Text, Alert, StyleSheet, TextInput, TouchableOpacity, Modal } from 'react-native'
-import React, { useContext, useState } from 'react'
+import { View, Text, Alert, StyleSheet, TextInput, TouchableOpacity, Modal, FlatList } from 'react-native'
+import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamsList } from '../navigation/RootNavigation'
 import CreateRecipeForm from '../components/CreateRecipeForm'
 import { Recipe, RecipeContext } from '../context/RecipeContext'
+import RecipeItem from '../components/RecipeItem'
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamsList,'Home'>;
 interface HomeScreenProp{
   navigation:HomeScreenNavigationProp
 }
 const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
   const {SignOut}=useContext(AuthContext);
-  const {createRecipe}=useContext(RecipeContext);
+  const {createRecipe,fetchRecipes,recipes}=useContext(RecipeContext);
   const [showModal,setShowModal] = useState(false);
   const [searchQuery,setSearchQuery]= useState('');
 
@@ -32,10 +33,12 @@ const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
 
  const  handleOncreateRecipeBtnSubmit = async(recipe: Omit<Recipe,'_id' | 'createdBy' | 'createdAt'>)=>{
      await createRecipe(recipe);
-     setShowModal(false);
-     
-     
+     setShowModal(false);   
  }
+
+ useEffect(()=>{
+  fetchRecipes();
+ },[])
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -60,6 +63,13 @@ const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
       </View>
 
       {/* render here all recipes */}
+
+        <FlatList
+        data={recipes}
+        renderItem={({item})=><RecipeItem recipe={item} />}
+        keyExtractor={(item) => item._id}
+        />
+
 
       {/* Modal for creating new recipe */}
       <Modal
