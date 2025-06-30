@@ -36,6 +36,14 @@ const styles=StyleSheet.create({
         shadowRadius:4,
         elevation:5,
 
-    }
+    },
+    cardContent:{},
+    title:{},
+    description:{},
+    difficulty:{},
+    deleteBtn:{},
+    deleteBtnText:{}
+
+
 })
 export default RecipeItem

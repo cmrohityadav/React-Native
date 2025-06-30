@@ -1,6 +1,6 @@
 import express from 'express'
 import { authMiddleware } from '../middleware/middleware';
-import { createRecipe, getRecipes } from '../controllers/Recipe.Controller';
+import { createRecipe, getRecipes } from '../controllers/Recipe.controller';
 
 const recipeRouter=express.Router();
 recipeRouter.route('/createRecipe').post(authMiddleware,createRecipe);
