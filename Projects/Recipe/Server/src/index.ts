@@ -15,7 +15,8 @@ app.use(express.json());
 
 app.use('/api/v1/user',Userrouter);
 app.use('/api/v1/recipe',recipeRouter);
-const PORT=process.env.PORT || 5000;
+const PORT = Number(process.env.PORT) || 5000;
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on port ${PORT}`);
 });
