@@ -43,3 +43,31 @@ export const getRecipes =async(req:AuthRequest,res:Response)=>{
      })
     }
 }
+
+export const getRecipe= async(req:AuthRequest,res:Response)=>{
+try {
+    const getSingleRecipe= await Recipe.findOne({
+      _id:req.params.id,
+      createdBy:req.userId
+    })
+    if(!getSingleRecipe){
+      res.status(400).json({
+         success:false,
+         message:"Recipe not found"
+     })
+     return;
+    }
+
+    res.status(200).json({
+      success:true,
+      message:'Recipe is fetched successfully !',
+      data:getSingleRecipe
+    })
+} catch (error) {
+    console.error(error)
+    res.status(500).json({
+         success:false,
+         message:"Something went wrong ! Please try again!"
+     })
+}
+}
