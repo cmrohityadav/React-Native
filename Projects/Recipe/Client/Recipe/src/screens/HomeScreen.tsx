@@ -66,7 +66,7 @@ const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
 
         <FlatList
         data={recipes}
-        renderItem={({item})=><RecipeItem recipe={item} />}
+        renderItem={({item})=><RecipeItem recipe={item} onPressRecipeItem={()=>navigation.navigate('RecipeDetails',{recipeId:item._id})} />}
         keyExtractor={(item) => item._id}
         />
 
