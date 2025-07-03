@@ -11,8 +11,8 @@ interface HomeScreenProp{
   navigation:HomeScreenNavigationProp
 }
 const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
-  const {SignOut}=useContext(AuthContext);
-  const {createRecipe,fetchRecipes,recipes}=useContext(RecipeContext);
+  const {SignOut,userId}=useContext(AuthContext);
+  const {createRecipe,fetchRecipes,recipes,deleteRecipe}=useContext(RecipeContext);
   const [showModal,setShowModal] = useState(false);
   const [searchQuery,setSearchQuery]= useState('');
 
@@ -34,6 +34,11 @@ const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
  const  handleOncreateRecipeBtnSubmit = async(recipe: Omit<Recipe,'_id' | 'createdBy' | 'createdAt'>)=>{
      await createRecipe(recipe);
      setShowModal(false);   
+ }
+
+ const handleDeleteRecipe =async(id:string)=>{
+  await deleteRecipe(id);
+  await fetchRecipes();
  }
 
  useEffect(()=>{
@@ -66,7 +71,12 @@ const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
 
         <FlatList
         data={recipes}
-        renderItem={({item})=><RecipeItem recipe={item} onPressRecipeItem={()=>navigation.navigate('RecipeDetails',{recipeId:item._id})} />}
+        renderItem={({item})=><RecipeItem 
+        recipe={item} 
+        onPressRecipeItem={()=>navigation.navigate('RecipeDetails',{recipeId:item._id})}
+        currentUserId={userId}
+        onRecipeItemDelete={()=>handleDeleteRecipe(item._id)}
+        />}
         keyExtractor={(item) => item._id}
         />
 

@@ -71,3 +71,34 @@ try {
      })
 }
 }
+
+export const deleteRecipe= async(req:AuthRequest,res:Response)=>{
+  try {
+    const getSingleRecipe= await Recipe.findOne({
+      id:req.params.id,
+      createdBy:req.userId,
+    })
+
+    if(!getSingleRecipe){
+      res.status(400).json({
+        success:false,
+        message:"you don't have permission to delete the recipe"
+      })
+      return;
+    }
+
+    await getSingleRecipe.deleteOne();
+    res.status(200).json({
+        success:true,
+        message:"Recipe deleted successfully"
+      })
+
+
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({
+         success:false,
+         message:"Something went wrong ! Please try again!"
+     })
+  }
+}

@@ -4,10 +4,14 @@ import { Recipe } from '../context/RecipeContext';
 interface RecipeItemProps {
   recipe: Recipe;
   onPressRecipeItem: () => void;
+  currentUserId:string | null;
+  onRecipeItemDelete: ()=> void;
 }
 const RecipeItem: React.FC<RecipeItemProps> = ({
   recipe,
   onPressRecipeItem,
+  currentUserId,
+  onRecipeItemDelete
 }) => {
   return (
     <TouchableOpacity style={styles.card} onPress={onPressRecipeItem}>
@@ -21,9 +25,14 @@ const RecipeItem: React.FC<RecipeItemProps> = ({
         </Text>
       </View>
 
-      <TouchableOpacity style={styles.deleteBtn}>
+      {
+        currentUserId && recipe.createdBy===currentUserId && <TouchableOpacity
+        onPress={onRecipeItemDelete}
+        style={styles.deleteBtn}>
         <Text style={styles.deleteBtnText}>Delete</Text>
       </TouchableOpacity>
+      }
+      
     </TouchableOpacity>
   );
 };
