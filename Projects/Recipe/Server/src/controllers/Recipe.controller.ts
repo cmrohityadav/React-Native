@@ -75,7 +75,7 @@ try {
 export const deleteRecipe= async(req:AuthRequest,res:Response)=>{
   try {
     const getSingleRecipe= await Recipe.findOne({
-      id:req.params.id,
+      _id:req.params.id,
       createdBy:req.userId,
     })
 

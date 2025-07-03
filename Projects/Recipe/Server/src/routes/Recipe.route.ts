@@ -6,6 +6,6 @@ const recipeRouter=express.Router();
 recipeRouter.route('/createRecipe').post(authMiddleware,createRecipe);
 recipeRouter.route('/getRecipes').get(authMiddleware,getRecipes);
 recipeRouter.route('/getRecipe/:id').get(authMiddleware,getRecipe);
-recipeRouter.route('/delete/:id').get(authMiddleware,deleteRecipe);
+recipeRouter.route('/delete/:id').delete(authMiddleware,deleteRecipe);
 
 export {recipeRouter}
