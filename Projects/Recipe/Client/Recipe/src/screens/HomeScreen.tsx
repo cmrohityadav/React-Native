@@ -16,6 +16,8 @@ const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
   const [showModal,setShowModal] = useState(false);
   const [searchQuery,setSearchQuery]= useState('');
 
+  const filteredRecipes = recipes.filter(recipeItem=> recipeItem.title.toLowerCase().includes(searchQuery.toLowerCase()))
+  
   const handleLogout= ()=>{
     Alert.alert('Logout','are you sure you want to logout?',[{
             text:'Cancel',
@@ -70,7 +72,7 @@ const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
       {/* render here all recipes */}
 
         <FlatList
-        data={recipes}
+        data={filteredRecipes}
         renderItem={({item})=><RecipeItem 
         recipe={item} 
         onPressRecipeItem={()=>navigation.navigate('RecipeDetails',{recipeId:item._id})}

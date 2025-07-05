@@ -48,7 +48,7 @@ export const getRecipe= async(req:AuthRequest,res:Response)=>{
 try {
     const getSingleRecipe= await Recipe.findOne({
       _id:req.params.id,
-      createdBy:req.userId
+      // createdBy:req.userId
     })
     if(!getSingleRecipe){
       res.status(400).json({
