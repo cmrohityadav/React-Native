@@ -1,4 +1,5 @@
-import { View, Text, Alert, StyleSheet, TextInput, TouchableOpacity, Modal, FlatList } from 'react-native'
+/* eslint-disable react-native/no-inline-styles */
+import { View, Text, Alert, StyleSheet, TextInput, TouchableOpacity, Modal, FlatList, useColorScheme } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -16,6 +17,8 @@ const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
   const [showModal,setShowModal] = useState(false);
   const [searchQuery,setSearchQuery]= useState('');
 
+    const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === 'dark';
   const filteredRecipes = recipes.filter(recipeItem=> recipeItem.title.toLowerCase().includes(searchQuery.toLowerCase()))
   
   const handleLogout= ()=>{
@@ -47,25 +50,51 @@ const HomeScreen:React.FC<HomeScreenProp> = ({navigation}) => {
   fetchRecipes();
  },[])
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
+    <View  style={[
+        styles.container,
+        { backgroundColor: isDarkMode ? '#000' : '#f5f5f5' },
+      ]}>
+      <View  style={[
+          styles.header,
+          { backgroundColor: isDarkMode ? '#1e1e1e' : '#007aff' },
+        ]}>
         <TextInput
           placeholder='Search Recipes ...'
-          style={styles.searchInput}
+          placeholderTextColor={isDarkMode ? '#aaa' : '#666'}
+          style={[
+            styles.searchInput,
+            {
+              backgroundColor: isDarkMode ? '#333' : '#fff',
+              color: isDarkMode ? '#fff' : '#000',
+            },
+          ]}
           value={searchQuery}
           onChangeText={setSearchQuery}
         />
         <TouchableOpacity 
-          style={styles.iconBtn}
+          style={[
+            styles.iconBtn,
+            {
+              backgroundColor: isDarkMode ? '#555' : '#fff',
+            },
+          ]}
           onPress={()=>setShowModal(true)}
           >
-          <Text style={styles.iconBtnText}>+</Text>
+          <Text style={[styles.iconBtnText, {color: isDarkMode ? '#00e0ff' : '#007aff'},]}>+</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           onPress={handleLogout}
-          style={styles.logoutButton}
+          style={[
+            styles.logoutButton,
+            {
+              backgroundColor: isDarkMode ? '#8dc63f' : '#c5e31a',
+            },
+          ]}
           >
-          <Text style={styles.logoutButtonText}>Logout</Text>
+          <Text style={[
+              styles.logoutButtonText,
+              { color: isDarkMode ? '#000' : '#000' },
+            ]}>Logout</Text>
         </TouchableOpacity>
       </View>
 

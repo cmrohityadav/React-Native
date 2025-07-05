@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+/* eslint-disable react-native/no-inline-styles */
+import { View, Text, StyleSheet, ScrollView, useColorScheme } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { RouteProp } from '@react-navigation/native'
 import { RootStackParamsList } from '../navigation/RootNavigation'
@@ -12,6 +13,8 @@ const RecipeDetailScreen:React.FC<RecipeDetailsScreenProps> = ({route}) => {
   const [recipeDetail,setRecipeDetail]=useState<Recipe| null>(null);
   const {recipeId}=route.params;
   const {fetchSingleRecipe}=useContext(RecipeContext);
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === 'dark';
   useEffect(()=>{
     const fetchRecipe=async()=>{
       const fetchedRecipe= await fetchSingleRecipe(recipeId);
@@ -24,14 +27,21 @@ const RecipeDetailScreen:React.FC<RecipeDetailsScreenProps> = ({route}) => {
 
   if(!recipeDetail){
     return <View style={styles.container}>
-      <Text>Loading...</Text>
+      <Text style={{ color: isDarkMode ? '#fff' : '#000' }}>Loading...</Text>
     </View>
   }
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>{recipeDetail?.title}</Text>
-      <Text style={styles.description}>{recipeDetail?.description}</Text>
-      <Text style={styles.difficulty}>{recipeDetail?.difficulty}</Text>
+    <ScrollView style={[
+          styles.container,
+          { backgroundColor: isDarkMode ? '#000' : '#fff' },
+        ]}>
+      <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#000' }]}>{recipeDetail?.title}</Text>
+      <Text style={[styles.description, { color: isDarkMode ? '#ccc' : '#666' }]}>{recipeDetail?.description}</Text>
+      <Text  
+      style={[
+          styles.difficulty,
+          { color: isDarkMode ? '#5ac8fa' : '#007afd' },
+        ]}>{recipeDetail?.difficulty}</Text>
     </ScrollView>
   )
 }

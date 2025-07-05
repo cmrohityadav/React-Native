@@ -1,4 +1,5 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import { View, Text, TouchableOpacity, StyleSheet, useColorScheme } from 'react-native';
 import React from 'react';
 import { Recipe } from '../context/RecipeContext';
 interface RecipeItemProps {
@@ -13,14 +14,25 @@ const RecipeItem: React.FC<RecipeItemProps> = ({
   currentUserId,
   onRecipeItemDelete
 }) => {
+
+  const colorScheme = useColorScheme();
+  const isDarkMode = colorScheme === 'dark';
   return (
-    <TouchableOpacity style={styles.card} onPress={onPressRecipeItem}>
+    <TouchableOpacity style={[
+        styles.card,
+        {
+          backgroundColor: isDarkMode ? '#1e1e1e' : '#ffffff',
+          shadowColor: isDarkMode ? '#fff' : '#000',
+        },
+      ]}
+      onPress={onPressRecipeItem}
+      >
       <View style={styles.cardContent}>
-        <Text style={styles.title}>{recipe?.title}</Text>
-        <Text style={styles.description} numberOfLines={2}>
+        <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#000' }]}>{recipe?.title}</Text>
+        <Text style={[styles.description, { color: isDarkMode ? '#ccc' : '#666' }]} numberOfLines={2}>
           {recipe?.description}
         </Text>
-        <Text style={styles.difficulty} numberOfLines={2}>
+        <Text  style={[styles.difficulty, { color: isDarkMode ? '#5ac8fa' : '#007aff' }]} numberOfLines={2}>
           {recipe?.difficulty}
         </Text>
       </View>
@@ -28,7 +40,12 @@ const RecipeItem: React.FC<RecipeItemProps> = ({
       {
         currentUserId && recipe.createdBy===currentUserId && <TouchableOpacity
         onPress={onRecipeItemDelete}
-        style={styles.deleteBtn}>
+        style={[
+            styles.deleteBtn,
+            {
+              backgroundColor: isDarkMode ? '#ff3b30' : '#333',
+            },
+          ]}>
         <Text style={styles.deleteBtnText}>Delete</Text>
       </TouchableOpacity>
       }
