@@ -1,3 +1,23 @@
+# Context
+
+- [Mobile Development Intro]()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+
+## Intro
+- Major Mobile Platform
+1. Android
+2. IOS
+-  Type of mobile Dev
+1. Native
+2. Cross Platform
 
 ### need to uninstall
 ```bash
