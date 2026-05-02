@@ -7,6 +7,7 @@
 - [View](#view)
 - [Text](#text)
 - [Image](#Image)
+- [ImageBackground](#ImageBackground)
 - [Button](#button)
 - [Pressable](#Pressable)
 - [Switch](#switch)
@@ -101,8 +102,22 @@ const styles = StyleSheet.create({
       <Image source={require('./assets/avatar_1692959594.png')} />
 
 ```
-
-
+## ImageBackground
+- ImageBackground ek special component hai jo tumhe image ko background me rakhne aur uske upar content (Text, buttons, etc.) overlay karne deta hai
+```jsx
+function App() {
+  return (
+    <ImageBackground
+      source={{ uri: "https://picsum.photos/400/300" }}
+      style={{ width: 300, height: 200, justifyContent: "center" }}
+    >
+      <Text style={{ color: "white", fontSize: 20 }}>
+        Hello on Image 😄
+      </Text>
+    </ImageBackground>
+  );
+}
+```
 ## Button
 - A basic button component for handling touches that should render nicely on any platform.
 - we cannot style it
