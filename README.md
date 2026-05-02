@@ -9,7 +9,7 @@
 - []()
 - [Button](#button)
 - [Switch](#switch)
-- []()
+- [TextInput](#TextInput)
 - [ScrollView](#scrollview)
 - []()
 - []()
@@ -48,7 +48,7 @@ npm run android
 
 
 
-# Core Components
+## Core Components
 ## View
 - The most fundamental component for building a UI
 - Like div in html
@@ -152,6 +152,28 @@ export default App;
   />
 
 ```
+```tsx
+function HomeScreen() {
+  const [myText,setMyText]=useState('');
+  return (
+    <View>
+      <Text>My Text: {myText} </Text>
+      <TextInput
+       value={myText}
+       onChangeText={(tempValue)=> setMyText(tempValue)}
+
+       keyboardType="default"
+       style={{ borderWidth: 1, padding: 10 }}
+      //  multiline
+      // numberOfLines={5}
+      placeholder="Enter your text......"
+      />
+
+    </View>
+  );
+}
+```
+
 
 ## ScrollView
 
