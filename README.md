@@ -3,10 +3,14 @@
 - [Mobile Development Intro]()
 - []()
 - []()
+- Core Components
+- [View](#view)
+- [Text](#text)
 - []()
+- [Button](#button)
+- [Switch](#switch)
 - []()
-- []()
-- []()
+- [ScrollView](#scrollview)
 - []()
 - []()
 - []()
@@ -76,7 +80,7 @@ const styles = StyleSheet.create({
 });
 ```
 ## Text
-- A component for displaying text
+- A component for displaying text/string
 
 
 
@@ -109,7 +113,33 @@ const styles = StyleSheet.create({
       Alert.alert('This is title Rohit','Hi....Rohit This is message')}/>
 
 ```
+## Switch
 
+```tsx
+import React, { useState } from 'react';
+import { View, Switch } from 'react-native';
+
+const App = () => {
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  const toggleSwitch = () => setIsEnabled(previous => !previous);
+
+  return (
+    <View>
+      <Switch
+      onValueChange={toggleSwitch}
+      value={isEnabled}
+
+        trackColor={{ false: "#767577", true: "#81b0ff" }}
+        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+        
+      />
+    </View>
+  );
+};
+
+export default App;
+```
 
 ## TextInput
 - A foundational component for inputting text into the app via a keyboard. 
