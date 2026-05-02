@@ -185,6 +185,38 @@ function App() {
 export default App;
 ```
 
+## TouchableHighlight
+
+- A wrapper for making views respond properly to touches. On press down, the opacity of the wrapped view is decreased, which allows the underlay color to show through, darkening or tinting the view
+- TouchableHighlight must have one child (not zero or more than one). If you wish to have several child components, wrap them in a View
+
+```jsx
+<TouchableHighlight
+      onPress={()=> setTouchableHighlightCount(pre=>pre + 1)}
+      style={styles.button}
+      underlayColor={'#FF0000'}
+      >
+        <View >
+          <Text style={styles.btnText}>TouchableHighlight</Text>
+          <Text style={styles.btnText}>TouchableHighlight: {touchableHighlightCount}</Text>
+        </View>
+</TouchableHighlight>
+```
+
+## TouchableOpacity
+- A wrapper for making views respond properly to touches. On press down, the opacity of the wrapped view is decreased, dimming it
+- TouchableOpacity can have multiple children — unlike TouchableHighlight, which strictly requires only one child
+```jsx
+<TouchableOpacity
+      onPress={()=>setOpacityCount(opacityCount + 1)}
+      style={styles.button}
+      >
+        <Text style={styles.btnText}>Touchable Opacity</Text>
+        <Text style={styles.btnText}>Touchable count: {opacityCount}</Text>
+      </TouchableOpacity>
+```
+
+
 ## Switch
 
 ```tsx
@@ -319,37 +351,53 @@ const styles = StyleSheet.create({
 
 ```
 
-## TouchableHighlight
 
-- A wrapper for making views respond properly to touches. On press down, the opacity of the wrapped view is decreased, which allows the underlay color to show through, darkening or tinting the view
-- TouchableHighlight must have one child (not zero or more than one). If you wish to have several child components, wrap them in a View
+## FlatList
+
+### Basic
 
 ```jsx
-<TouchableHighlight
-      onPress={()=> setTouchableHighlightCount(pre=>pre + 1)}
-      style={styles.button}
-      underlayColor={'#FF0000'}
-      >
-        <View >
-          <Text style={styles.btnText}>TouchableHighlight</Text>
-          <Text style={styles.btnText}>TouchableHighlight: {touchableHighlightCount}</Text>
-        </View>
-</TouchableHighlight>
-```
+function App() {
+  const STOCK_DATA = Array.from({ length: 30 }, (_, index) => ({
+    id: index.toString(),
+    name: `Stock ${index + 1}`,
+    price: 1000 + index * 50,
+  }));
 
-## TouchableOpacity
-- A wrapper for making views respond properly to touches. On press down, the opacity of the wrapped view is decreased, dimming it
-- TouchableOpacity can have multiple children — unlike TouchableHighlight, which strictly requires only one child
-```jsx
-<TouchableOpacity
-      onPress={()=>setOpacityCount(opacityCount + 1)}
-      style={styles.button}
+  const renderItemUIFun = ({ item }) => {
+    return (
+      <View
+        style={{
+          padding: 15,
+          margin: 10,
+          backgroundColor: "#eee",
+          borderRadius: 10,
+        }}
       >
-        <Text style={styles.btnText}>Touchable Opacity</Text>
-        <Text style={styles.btnText}>Touchable count: {opacityCount}</Text>
-      </TouchableOpacity>
-```
+        <Text>{item.name}</Text>
+        <Text>₹ {item.price}</Text>
+      </View>
+    );
+  };
+  return (
+    <SafeAreaView>
+      <FlatList
+        data={STOCK_DATA}
+        renderItem={renderItemUIFun}
+        keyExtractor={(item) => item.id}
 
+
+        ListHeaderComponent={<Text>Top Stocks</Text>}
+        ListFooterComponent={<Text>End of List</Text>}
+        // horizontal
+
+      />
+    </SafeAreaView>
+  );
+}
+
+export default App;
+```
 
 
 
