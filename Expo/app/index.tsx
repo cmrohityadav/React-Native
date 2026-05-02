@@ -1,32 +1,13 @@
-import { useState } from "react";
-import { View, Text,Button, Alert, Switch } from "react-native";
-function HomeScreen(){
-  const [enableSwitch,setEnableSwitch]=useState(false)
-  const onToggleSwitch=()=>{
-    setEnableSwitch((prev)=>!prev)
-  }
-
+import { ScrollView, Text } from "react-native";
+function HomeScreen() {
   return (
-    <View>
-      <Text style={{fontSize:24}}>
-        Hello Swati
-      </Text>
-      <Button
-        title="Press to swati"
-        onPress={()=>
-          Alert.alert("This is Alert Ttitle","This is message ")
-        }
-      />
-      <Switch
-        onChange={onToggleSwitch}
-        value={enableSwitch}
-
-        trackColor={{ false: "#767577", true: "#81b0ff" }}
-        thumbColor={enableSwitch ? "#f5dd4b" : "#f4f3f4"}
-      />
-
-      
-    </View>
+    <ScrollView>
+      {[...Array(30)].map((_, indx) => (
+        <Text key={indx} style={{ fontSize: 24 }}>
+          Hello from user {indx + 1}
+        </Text>
+      ))}
+    </ScrollView>
   );
 }
 export default HomeScreen;
