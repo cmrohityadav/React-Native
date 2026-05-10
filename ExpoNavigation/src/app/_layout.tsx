@@ -4,7 +4,7 @@ export default function RootLayout() {
   return (
     <Stack
     screenOptions={{
-     headerTintColor:"#fff",
+     headerTintColor:"#fffdfd",
      headerTitleAlign:"center"
     }}
     >
@@ -32,6 +32,16 @@ export default function RootLayout() {
           title: "Detail",
           headerStyle: {
             backgroundColor: "rgba(27, 232, 41, 0.92)",
+          },
+        }}
+      />
+
+      <Stack.Screen
+        name="tabnav"
+        options={{
+          title: "TabNav",
+          headerStyle: {
+            backgroundColor: "rgba(228, 163, 52, 0.92)",
           },
         }}
       />
