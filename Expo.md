@@ -2,7 +2,7 @@
 - Expo  is React Native framework
 - [Expo Commands](#expo-commands)
 - [Expo Router](#expo-router)
-- []()
+- [Navigation](#navigation)
 - []()
 - []()
 - []()
@@ -38,4 +38,15 @@ npx create-expo-app@latest
 
 ### Slot
 
+## Navigation
+- moving between screens/pages in your app
+- **Types of Navigation**
+1. Stack
+- Works like a stack of cards
+
+2. Tab Navigation
+- Bottom tabs
+
+3.Drawer Navigation
+- Side menu
 
