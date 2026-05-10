@@ -45,6 +45,16 @@ export default function RootLayout() {
           },
         }}
       />
+
+      <Stack.Screen
+        name="drawernav"
+        options={{
+          title: "DrawerNav",
+          headerStyle: {
+            backgroundColor: "rgba(24, 157, 234, 0.92)",
+          },
+        }}
+      />
     </Stack>
   );
 }

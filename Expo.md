@@ -49,4 +49,7 @@ npx create-expo-app@latest
 
 3.Drawer Navigation
 - Side menu
-
+- Install depedencies
+```bash
+npx expo install @react-navigation/drawer react-native-reanimated react-native-worklets react-native-gesture-handler
+```

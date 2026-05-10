@@ -12,6 +12,7 @@ export default function Index() {
     >
       <Link href={"/about"}>About</Link>
       <Link href={"/tabnav"}>Go to Tab Navigation</Link>
+      <Link href={"/drawernav"} >Go to Drawer Navigation</Link>
     </View>
   );
 }
